@@ -2,7 +2,7 @@
 
 DEPENDENCIES=("gdb-multiarch" "nasm" "qemu-user")
 
-echo "Checking annd installing dependencies..."
+echo "Checking and installing dependencies..."
 for dep in "${DEPENDENCIES[@]}";do
     if ! command -v $dep &> /dev/null; then
         sudo apt-get install -y $dep
