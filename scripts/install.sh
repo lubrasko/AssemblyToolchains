@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Created by Tyler Cain
-# Group B - 1
 # ISS Program, SADT, SAIT
 # November 2023
 
