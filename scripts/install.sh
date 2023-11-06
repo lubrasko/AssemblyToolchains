@@ -3,7 +3,11 @@
 # Created by Tyler Cain
 # Group B - 1
 # ISS Program, SADT, SAIT
-# August 2022
+# November 2023
+
+
+# You must do 'chmod +x install.sh' before you can run the install script
+
 
 DEPENDENCIES=("gdb-multiarch" "nasm" "qemu-user") # Declaring the dependencies we will need to install
 
