@@ -1,7 +1,6 @@
 #! /bin/bash
-#Testing
+
 # Created by Lubos Kuzma
-# Group B - 1
 # ISS Program, SADT, SAIT
 # August 2022
 
