@@ -10,29 +10,37 @@ if [ $# -lt 1 ]; then
         echo ""
         echo "x86_toolchain.sh [ options ] <assembly filename> [-o | --output <output filename>]"
         echo ""
-        echo "-v | --verbose                Show some information about steps performed."
-        echo "-g | --gdb                    Run gdb command on executable."
+        echo "-v | --verbose                Show some information about steps performed. (Default)"
+        echo "-nv | --noverbose             Turn verbose mode off"
+        echo "-g | --gdb                    Run gdb command on executable. (Default)"
+        echo "-ng | --nogdb                 Do not run gdb command on executable"
         echo "-b | --break <break point>    Add breakpoint after running gdb. Default is _start."
-        echo "-r | --run                    Run program in gdb automatically. Same as run command inside gdb env."
+        echo "-r | --run                    Run program in gdb automatically. Same as run command inside gdb env. (Default)"
+        echo "-nr | --norun                 Do not run program in gdb automatically."
         echo "-q | --qemu                   Run executable in QEMU emulator. This will execute the program."
-        echo "-64| --x86-64                 Compile for 64bit (x86-64) system."
+        echo "-64| --x86-64                 Compile for 64bit (x86-64) system. (Default)"
+        echo "-no64| --nox86-64             Compile for 32bit system."
         echo "-o | --output <filename>      Output filename."
 
         exit 1
 fi
 
 POSITIONAL_ARGS=()
-GDB=False
+GDB=True
 OUTPUT_FILE=""
-VERBOSE=False
-BITS=False
+VERBOSE=True
+BITS=True
 QEMU=False
 BREAK="_start"
-RUN=False
+RUN=True
 while [[ $# -gt 0 ]]; do
         case $1 in
                 -g|--gdb)
                         GDB=True
+                        shift # past argument
+                        ;;
+                -ng|--nogdb)
+                        GDB=False
                         shift # past argument
                         ;;
                 -o|--output)
@@ -44,8 +52,16 @@ while [[ $# -gt 0 ]]; do
                         VERBOSE=True
                         shift # past argument
                         ;;
-                -64|--x84-64)
+                -nv|--noverbose)
+                        VERBOSE=Flase
+                        shift # past argument
+                        ;;
+                -64|--x86-64)
                         BITS=True
+                        shift # past argument
+                        ;;
+                -no64|--nox86-64)
+                        BITS=FALSE
                         shift # past argument
                         ;;
                 -q|--qemu)
@@ -54,6 +70,10 @@ while [[ $# -gt 0 ]]; do
                         ;;
                 -r|--run)
                         RUN=True
+                        shift # past argument
+                        ;;
+                -nr|--norun)
+                        RUN=False
                         shift # past argument
                         ;;
                 -b|--break)
